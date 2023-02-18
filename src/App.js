@@ -16,30 +16,13 @@ import { Login } from "./routes/Login";
 import { BrowserRouter, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SignWithGoogle from "./components/SignWithGoogle";
-import { Route, Navigate, Routes } from "react-router-dom";
-import Home from "./routes/Home";
+import { Route, Navigate, Routes, } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute/ProtectedRoute";
-import Turns from "./routes/turns";
+import PublicRoute from "./routes/ProtectedRoute/Routes";
+import { Store } from "@reduxjs/toolkit";
+import Page from "./routes/Home";
 
-<BrowserRouter>
-    <Routes>
-
-      
-      <Route path="/" element= { <Login/>  } />
-      
-      <Route path="/home" element= {<ProtectedRoute> <Home/> </ProtectedRoute>} />
-      
-      <Route path="/turns" element= { <Turns/> } />
-
-
-    </Routes> 
-  </BrowserRouter>
 export default function App() {
-
-
-
-
-
 
 
   const user = useSelector(selectUser);
@@ -61,21 +44,28 @@ export default function App() {
       }
     });
   }, []);
- 
-  return ( 
-    <ProtectedRoute></ProtectedRoute>
-  );
-}
 
+  return (
 
-
-  /*  <div className="public">   {!user ? (  ) : (  <div className="no-public">   <Home />  </div>    )}
-    </div>
-    
-    
-    
    
-    
-    
-    
-    */
+  <div className="public">   {!user ? (<Login/> ) : (  <div className="no-public">  <Page/>  </div>    )}
+    </div>
+
+  )
+  }
+
+
+  /*   <div className="public">   {!user ? ( <Navigate to= {<Login/>}/> ) : (  <div className="no-public">  <Navigate to = {<Home/>} />  </div>    )}
+    </div>
+
+
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={ <Login/> }/>
+      <Navigate to = "/" />
+      <Route path="home" element={<PrivateRoute>
+      <Home/>
+      </PrivateRoute>  }/>
+    </Routes>
+  </BrowserRouter>
+    */;

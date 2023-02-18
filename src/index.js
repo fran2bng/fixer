@@ -16,26 +16,8 @@ root.render(
   <Provider store={store}>
   <div>
 
-
-
-  <BrowserRouter>
-    <Routes>
-
-      
-      <Route path="/" element= { <Login/>  } />
-      
-      <Route path="/home" element= {<Home/>} />
-      
-      <Route path="/turns" element= { <Turns/> } />
-
-
-    </Routes> 
-  </BrowserRouter>
-
-
-
+  <App></App>
 
 </div>
-
   </Provider>
 );

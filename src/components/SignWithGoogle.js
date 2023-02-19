@@ -2,6 +2,8 @@ import React from 'react'
 import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
+import "../routes/login.css"
+
 
 function SignWithGoogle() {
 
@@ -22,7 +24,9 @@ function SignWithGoogle() {
       
   return (
     <div>
-      <button onClick={handleOnClick}>Logeate con Google</button>
+      <button className="log"
+       onClick={handleOnClick}>Logeate con Google
+       </button>
     </div>
   )
 }

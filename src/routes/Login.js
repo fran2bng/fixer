@@ -80,7 +80,7 @@ export function Login() {
 
     <div>
 
-    <SignWithGoogle></SignWithGoogle>
+    
 
       <div className="login">
         <form>
@@ -122,12 +122,31 @@ export function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             />
+                    </Grid > 
                     </Grid>
-                </Grid>
-                <Button
-                    type='submit'
-                    onClick={loginToApp}
-                >Send</Button>
+
+                    <Grid container
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={0}>    
+
+                    <Grid item>       
+                      <button
+                className="button"
+                variant="outlined"
+                type='submit'
+                onClick={loginToApp}
+                >Send
+                    </button>
+                    </Grid>  
+
+                    <Grid container>
+                    <SignWithGoogle />
+                    </Grid>
+                    </Grid> 
+                  
+              
         </form>
 
         <p>

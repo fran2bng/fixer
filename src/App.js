@@ -12,26 +12,24 @@ import {
   signOut,
 } from "firebase/auth";
 import Provider from "react-redux";
-import { Login } from "./routes/Login";
 import { BrowserRouter, redirect, useNavigate } from "react-router-dom";
 import SignWithGoogle from "./components/SignWithGoogle";
 import { Route, Navigate, Routes, } from "react-router-dom";
-import ProtectedRoute from "./routes/ProtectedRoute/ProtectedRoute";
-import PublicRoute from "./routes/ProtectedRoute/Routes";
 import { Store } from "@reduxjs/toolkit";
 import Page from "./routes/Home";
+import { Login } from "./routes/Login";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 
 
 export default function App() {
-
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [checking, setCheking] = useState(false)
+  const Navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
+      if (userAuth) { Navigate("/home")
         dispatch(
           login({
             email: userAuth.email,
@@ -41,13 +39,48 @@ export default function App() {
           }) 
           
         ); 
-      }  else {
+      }  else { Navigate("/login")
         dispatch(logout());
       }
     });
-  }, []);
+  }, []); 
 
-  return ( <div>
+  return ( 
+
+    <Routes>
+    <Route path="/login" element= {<Login/>} />
+    <Route path="/home" element={ <Page /> } />
+    </Routes>
+
+  )
+  }
+
+
+
+ /*
+    <>
+    
+    {user && (
+    <Routes>
+     
+    <Route path="/home" element={  <Page />  } />
+    </Routes>
+    )}
+    {!user && 
+    <Routes>
+    
+    
+    
+    </Routes>}
+  
+  </>
+  */
+
+
+
+
+
+/* <div>
     <div className="public">   {!user ? ( <Login/>) 
 
 
@@ -58,7 +91,7 @@ export default function App() {
       <div className="no-public">  
       <BrowserRouter>
       <Routes>     
-        
+
         <Route path="/page" element= {<Navigate to="/page"/>} />
         <Route path="/page" element= {<Page/>} />
 
@@ -68,11 +101,11 @@ export default function App() {
     )}
     </div>
      </div>
-  )
-  }
+     */
 
 
-  /*   <div className="public">   {!user ? ( <Navigate to= {<Login/>}/> ) : (  <div className="no-public">  <Navigate to = {<Home/>} />  </div>    )}
+
+  /*   <div className="public">   {!user ? ( {<Login/>} ) : (  <div className="no-public"> {<Home/>} </div>    )}
     </div>
 
 <Route path="/auth" element={this.state.token ? <Navigate to="/competition" /> : AuthPage}
@@ -118,4 +151,4 @@ export default function App() {
       </PrivateRoute>  }/>
     </Routes>
   </BrowserRouter>
-    */;
+    */

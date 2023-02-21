@@ -80,7 +80,7 @@ export function Login() {
 
     <div>
 
-    
+<SignWithGoogle />
 
       <div className="login">
         <form>
@@ -93,7 +93,7 @@ export function Login() {
                     <Grid item>
                         <TextField
                             type="text"
-                            id="outlined-basic"
+                            id="user"
                             label="Usuario"
                             variant="outlined"
                             name='Usuario'
@@ -104,8 +104,8 @@ export function Login() {
                     <Grid item>
                         <TextField
                             type="email"
-                            id="outlined-basic"
-                            label="coso"
+                            id="email"
+                            label="email"
                             variant="outlined"
                             name='Email'
                             onChange={(e) => setEmail(e.target.value)}
@@ -115,7 +115,7 @@ export function Login() {
                     <Grid item>
                         <TextField
                             type="password"
-                            id="outlined-basic"
+                            id="password"
                             label="Password"
                             variant="outlined"
                             name='Password'
@@ -142,7 +142,7 @@ export function Login() {
                     </Grid>  
 
                     <Grid container>
-                    <SignWithGoogle />
+                
                     </Grid>
                     </Grid> 
                   

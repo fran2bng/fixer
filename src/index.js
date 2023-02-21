@@ -9,15 +9,15 @@ import Home from "./routes/Home";
 import { Router } from "react-router-dom";
 import Turns from "./routes/turns";
 import { User } from "firebase/auth";
-import ProtectedRoute from "./routes/ProtectedRoute/ProtectedRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
   <div>
-    
 
-  <App></App>
+  <BrowserRouter>
+      <App />
+   </BrowserRouter>
 
 </div>
   </Provider>

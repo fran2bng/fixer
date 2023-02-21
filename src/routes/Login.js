@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 import { auth } from "../firebase.js";
-import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
-    updateProfile, 
-    onAuthStateChanged, 
-    signInWithEmailAndPassword, 
-    signOut 
-    } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/userSlice.js";
-import { TextField, Grid, Button } from '@mui/material'
-import "./login.css"
-import { dark } from "@mui/material/styles/createPalette.js";
+import { TextField, Grid, Button } from "@mui/material";
+import "./login.css";
 import SignWithGoogle from "../components/SignWithGoogle.js";
-
-
-
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  // use state constants for the the form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const loginToApp = (e) => {
     e.preventDefault();
@@ -52,12 +46,12 @@ export function Login() {
     }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
+        Navigate("/home");
         updateProfile(userAuth.user, {
           displayName: name,
           photoURL: profilePic,
         })
           .then(
-            // Dispatch the user information for persistence in the redux state
             dispatch(
               login({
                 email: userAuth.user.email,
@@ -77,86 +71,82 @@ export function Login() {
   };
 
   return (
-
+  
     <div>
-
-<SignWithGoogle />
-
+     <div>or login with   <SignWithGoogle /></div>
       <div className="login">
         <form>
-        <Grid container
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    spacing={3}>
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={3}
+          >
+            <Grid item>
+              <TextField
+                type="text"
+                id="user"
+                label="Usuario"
+                variant="outlined"
+                name="Usuario"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                type="email"
+                id="email"
+                label="email"
+                variant="outlined"
+                name="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                type="password"
+                id="password"
+                label="Password"
+                variant="outlined"
+                name="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </Grid>
+          </Grid>
 
-                    <Grid item>
-                        <TextField
-                            type="text"
-                            id="user"
-                            label="Usuario"
-                            variant="outlined"
-                            name='Usuario'
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            type="email"
-                            id="email"
-                            label="email"
-                            variant="outlined"
-                            name='Email'
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            type="password"
-                            id="password"
-                            label="Password"
-                            variant="outlined"
-                            name='Password'
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                            />
-                    </Grid > 
-                    </Grid>
-
-                    <Grid container
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    spacing={0}>    
-
-                    <Grid item>       
-                      <button
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={0}
+          >
+            <Grid item>
+              <button
                 className="button"
                 variant="outlined"
-                type='submit'
+                type="submit"
                 onClick={loginToApp}
-                >Send
-                    </button>
-                    </Grid>  
+              >
+                Send
+              </button>
+            </Grid>
 
-                    <Grid container>
-                
-                    </Grid>
-                    </Grid> 
-                  
-              
+            <Grid container></Grid>
+          </Grid>
         </form>
-
         <p>
-          {"martin acm1pt "}
+          {"Sign up Here "}
           <span className="login__register" onClick={register}>
-            Register button
+            BUTTON 
           </span>
         </p>
       </div>
-    </div>
+     
+    </div> 
   );
 }
-

@@ -1,34 +1,30 @@
-import React from 'react'
-import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from "firebase/auth";
-import { auth } from '../firebase';
-import { useNavigate } from "react-router-dom";
-import "../routes/login.css"
-
+import React from "react";
+import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import { auth } from "../firebase";
+import "../routes/login.css";
 
 function SignWithGoogle() {
+  async function handleOnClick() {
+    const googleProvider = new GoogleAuthProvider();
+    await signInWithGoogle(googleProvider);
 
-    async function handleOnClick() {
-        const googleProvider = new GoogleAuthProvider();
-        await signInWithGoogle(googleProvider);
-    
-        async function signInWithGoogle(googleProvider) {
-          try {
-            const res = await signInWithPopup(auth, googleProvider);
-            console.log(res);
-          } catch (error) {
-            console.error(error);
-          }
-        }
+    async function signInWithGoogle(googleProvider) {
+      try {
+        const res = await signInWithPopup(auth, googleProvider);
+        console.log(res);
+      } catch (error) {
+        console.error(error);
       }
-       
-      
+    }
+  }
+
   return (
     <div>
-      <button className="log"
-       onClick={handleOnClick}>Logeate con Google
-       </button>
+      <button className="log" onClick={handleOnClick}>
+        Logeate con Google
+      </button>
     </div>
-  )
+  );
 }
 
-export default SignWithGoogle
+export default SignWithGoogle;

@@ -24,7 +24,7 @@ export function Login() {
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userAuth) => {
+      .then((userAuth) => { Navigate("/home")
         dispatch(
           login({
             email: userAuth.user.email,

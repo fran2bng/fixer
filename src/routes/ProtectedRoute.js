@@ -40,6 +40,6 @@ export default function ProtectedRoute({}) {
         </span>
       </div>
     );
-  }
+  } 
   return <Outlet />;
 }

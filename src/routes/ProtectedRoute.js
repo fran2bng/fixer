@@ -16,7 +16,7 @@ export default function ProtectedRoute({}) {
   useEffect(() => {
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        Navigate("/home")
+        Navigate("/turns")
         dispatch(
           login({
             email: userAuth.email,
@@ -36,7 +36,7 @@ export default function ProtectedRoute({}) {
       <div className="unauthorized">
         <h1>Unauthorized :</h1>
         <span>
-          <NavLink to="/login">Please Login</NavLink> to gain access
+          <NavLink to="/home">Please Login</NavLink> to gain access
         </span>
       </div>
     );

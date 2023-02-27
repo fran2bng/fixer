@@ -1,13 +1,13 @@
-import React from "react";
 import LogOut from "../components/LogOut";
+import Navbar from "../components/Navbar";
+import ColorSchemesExample from "../components/Navbar";
 
 export default function Page() {
-  return  (
-    <div>
+
+  
+  return (
       <div>
-        <LogOut />
-      </div>
-      esto debería ser la main page que lleva a los turnos
+      hola
     </div>
   );
 }

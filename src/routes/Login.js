@@ -24,7 +24,7 @@ export function Login() {
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userAuth) => { Navigate("/home")
+      .then((userAuth) => { Navigate("/turns")
         dispatch(
           login({
             email: userAuth.user.email,
@@ -73,7 +73,6 @@ export function Login() {
   return (
   
     <div>
-     <div>or login with   <SignWithGoogle /></div>
       <div className="login">
         <form>
           <Grid
